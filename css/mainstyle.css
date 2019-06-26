@@ -1,0 +1,280 @@
+/*
+ *
+ *
+ */
+
+html{
+	height: 100%;
+}
+
+body{
+	padding: 0;
+	margin: 0;
+	background: url("/img/back-2.jpg") no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+	position: relative;
+}
+
+
+input.fspCheckBox{
+	-webkit-appearance: none;
+    width: 20px!important;
+    height: 20px!important;
+    display: inline-block;
+    margin: -3px 5px 0 0 !important;
+    cursor: pointer;
+    vertical-align: middle;
+    background: url(/img/unchecked.png) no-repeat;
+    outline: none;
+}
+
+input.fspCheckBox:checked {
+	background: url(/img/checked.png) no-repeat;
+}
+
+input.fspCheckBox:focus{
+	outline: none;
+}
+
+.col-xs-4,.col-xs-3{
+	padding-left: 5px;
+	padding-right: 5px;
+	text-align: left;
+}
+
+.col-xs-3{
+	padding-left: 0 ! important;
+}  
+
+.fspCheckBox{
+	float: right;
+    top: 10px;
+    position: relative;
+}
+
+
+.container{
+	width:98%;
+}
+
+
+.fspPIC{
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+#fspPIC-tab-s1-1{
+	background-image: url(/img/s1service.png);
+	background-repeat:no-repeat;
+	width: 120px;
+}
+
+#fspPIC-tab-s1-2{
+	background-image: url(/img/s1tech.png);
+	background-repeat:no-repeat;
+	width: 120px;
+}
+
+/***************tabs************/
+#tabs-container {
+	height:100%;
+}
+
+.tabs {
+	background-color:#0386cc;
+	background-size:auto 100%;
+	width:100%;
+	height:50px;
+	overflow:hidden;
+	font-size: 11px;
+	margin-top: 5px;
+}
+
+.tabs a {
+	font-weight:normal;
+	text-align:center;
+	float:left;
+	width:50%;
+	height:50px;
+	line-height:38px;
+	color:#ddd;
+	text-decoration:none;
+}
+
+.tabs a.active {
+	background-color:#223a5e;
+	background-size:64px 39px;
+	background-position:left top;
+	color:#fff;
+}
+
+
+.tabBanner-down{
+	font-size: 11px;
+	margin-top: -20%;
+}
+
+
+/***************End of tabs************/
+
+.progress {
+    height: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    background-color: rgba(80,80,80, 0.37);
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+.progress-bar{
+	background-color: #223a5e;
+}
+
+#confirmVote, .voteRate{
+	margin-top: -5px;
+	color: #223a5e;
+}
+
+#confirmVote{
+	border-radius: 0px;
+   	background-color: #188ae2;
+   	border-color: #309ef3;
+   	color: #fff;
+}
+
+#showRanks{
+	border-radius: 0px;
+	margin-top: -5px;
+	margin-left: 5px;
+}
+
+#confirmVote,#showRanks,#confirmVote:focus,#showRanks:focus{
+	outline: none;
+}
+
+
+/* 投票列表项  */
+.list-order{
+	top: 10px;
+	float: left;
+	color: #111;
+    position: relative;
+}
+
+.list-co{
+	width: 150px;
+    float: left;
+    padding-left: 10px;
+    word-break: normal;
+    text-align: left;
+}
+
+.list-pic{
+	width: 50px;
+	height: 40px;
+	display: inline-block;
+}
+
+.list-pic-in{
+	width: 100%;
+	height: 100%;
+}
+
+.list-group-item{
+	border-color: transparent;
+	background-color: rgba(0,0,0,0.07);
+	margin-bottom: 5px;
+	color: #111;
+	height: 60px;
+}
+
+.list-group{
+	overflow-y: auto; 
+}
+
+.list-group::-webkit-scrollbar{
+	width: 6px;
+}
+
+.list-group::-webkit-scrollbar-thumb{
+	border-radius: 5px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background: rgba(0,0,0,0.2);
+	scrollbar-arrow-color:red
+}
+
+.list-group::-webkit-scrollbar-track{
+	background: rgba(0,0,0,0.1);
+}
+
+
+.intro{
+    position: absolute;
+    float: left;
+    top: 35px;
+    color: #fff;
+    background-color: #223a5e;
+    padding-left: 5px;
+    padding-right: 2px;
+}
+
+/*costume modal*/
+.modal-dialog{
+	margin-top: 10%;
+	border: 0;
+}
+
+.modal-content{
+	background-color: rgba(0,0,0,0.8);
+	border-radius: 0px;
+	color: #fff;
+	text-align: left;
+}
+
+#introcontent{
+	width: 100%;
+	background-color: transparent;
+	border: 0;
+	color: #fff;
+	overflow-y: auto;
+	outline: none;
+}
+.introdetail{
+	color: #ededed;
+}
+
+.modal-footer{
+	text-align: center;
+	border-top: 0;
+}
+
+.btn-default,.btn-default:active,.btn-default:visited{
+/*	border-radius: 50%;*/
+	color: #fff;
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+    font-size: 18px;
+}
+
+#reselect{
+	color: #ededed;
+    background-color: transparent;
+    border-color: transparent;
+    outline: none;
+}
+
+.list-group-item:first-child {
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+}
+
+.info{
+	font-size: 18px;
+	height: 45px;
+	background-color: rgba(255,255,255,0.4);
+	color: #fff;
+	outline: none;
+}

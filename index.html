@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" /> 
+<title>2019年品牌佛山第一期</title>
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="css/mainstyle.css"/>
+</head>
+<body>
+    <div class="bannnar">
+        <img src="img/title-2.png" id="pagebannar" class="fspPIC">
+    </div>
+
+    <div class="intro" data-toggle="modal" data-target="#introModal">
+        投<br/>票<br/>规<br/>则
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-5" id="progress-content">
+                <div class="progress">
+                    <div id="s1-list1-state" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                </div>
+                <div class="progress">
+                    <div id="s1-list2-state" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>
+                </div>
+            </div>
+            <div class="col-xs-3">
+                <div class="voteRate">分榜一&nbsp;<span id="s1-list1-num">0/10</span></div>
+                <div class="voteRate">分榜二&nbsp;<span id="s1-list2-num">0/10</span></div>
+            </div>
+            <div class="col-xs-4">
+                <button class="btn btn-success" id="confirmVote">投票</button>
+                <button class="btn btn-primary" id="showRanks" >
+                    <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <a href="#" class="active"><p class="tabBanner">佛山市网信技术</p><p class="tabBanner-down">创新优秀品牌(分榜一)</p></a>
+            <a href="#"><p class="tabBanner">佛山市服务贸易和外包</p><p class="tabBanner-down">领军企业品牌(分榜二)</p></a>
+        </div>
+        <div id="tabs-container" class="swiper-container">
+            <div class="swiper-wrapper">              
+                <!-- tab页1 -->
+                <div class="swiper-slide">
+                    <br/>
+                    <ul class="list-group" id="s1-list1-list"></ul>
+                </div>
+                <!-- End of tab页1 -->
+                
+                <!-- tab页2 -->
+                <div class="swiper-slide">
+                    <br/>
+                    <ul class="list-group" id="s1-list2-list"></ul>
+                </div>
+                <!-- End of tab页2 -->
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn" id="reselect" data-toggle="modal" data-target="#checkinInfo" style="color:#223a5e;">重置选择</button>
+        </div>
+
+    </div>
+
+    <div class="modal fade" id="introModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>投票规则</h4>
+                    <hr/>
+                    <div id="introcontent">
+                        <p><strong>投票时间</strong></p>
+                        <p class="introdetail">2019年7月1日至10日</p>
+                        <p><strong>投票规则</strong></p>
+                        <p class="introdetail">1、一个微信号每天只能投票两次；</p>
+                        <p class="introdetail">2、每个榜单至少选5个，最多选10个；</p>
+                        <p class="introdetail">3、必须同时对投票页面的所有榜单投票。</p>
+                        <p><strong>奖品设置</strong></p>
+                        <p class="introdetail">一等奖 华为P30手机（1名）</p>
+                        <p class="introdetail">二等奖 格兰仕UOVO系列微波炉（3名）</p>
+                        <p class="introdetail">三等奖 志高冷暖空调扇（15名）</p>
+                        <p class="introdetail">四等奖 凯仕乐足浴盆（25名）</p>
+                        <p><strong>活动简介</strong></p>
+                        <p class="introdetail">为加强佛山的产品品牌、企业品牌、区域品牌与消费者互动，推动佛山的产品品牌、企业品牌、区域品牌走向全国、全球，佛山传媒集团、佛山日报社携手佛山市市场监督管理局、佛山市工商联、佛山市企业联合会，从2007年至2017年主办每两年一届的“品牌佛山”系列活动。此项系列活动至今已成功举办六届，2019年5月到10月举办第七届。“品牌佛山”被誉为“佛山品牌经济奥斯卡大奖”，10年来吸引到数百家品牌企业参评、数十万名消费者踊跃投票，参评企业包括美的、碧桂园、蒙娜丽莎等一大批佛山支柱产业的龙头企业。“品牌佛山”系列活动已成为佛山传媒集团、佛山日报社实施媒政媒企媒众互动发展战略、佛山企业品牌向世界展示的大平台。</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="getinfo" style="color:#188ae2;">我知道了</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="checkinInfo" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0;">
+                    <div class="form-group" style="text-align:center;">
+                        <h4>信息登记</h4>
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <input type="input" class="info form-control" placeholder="*姓名"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <input type="input" class="info form-control" placeholder="*手机号"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelinfo">取消</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" id="uploadinfo" style="color:#188ae2;">提交</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+    <script type="text/javascript" src="js/control.js"></script>
+    <script type="text/javascript" src="js/soshm.min.js"></script>
+
+</body>
+</body>
+</html>
