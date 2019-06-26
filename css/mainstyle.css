@@ -210,14 +210,19 @@ input.fspCheckBox:focus{
 }
 
 
-.intro{
+.floatplugin{
     position: absolute;
     float: left;
     top: 35px;
     color: #fff;
     background-color: #223a5e;
-    padding-left: 5px;
+    padding-left: 3px;
     padding-right: 2px;
+    z-index:999;
+}
+
+#reselect{
+	top: 300px;
 }
 
 /*costume modal*/
@@ -257,13 +262,6 @@ input.fspCheckBox:focus{
     border-color: transparent;
     outline: none;
     font-size: 18px;
-}
-
-#reselect{
-	color: #ededed;
-    background-color: transparent;
-    border-color: transparent;
-    outline: none;
 }
 
 .list-group-item:first-child {
