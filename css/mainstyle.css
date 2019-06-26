@@ -10,7 +10,7 @@ html{
 body{
 	padding: 0;
 	margin: 0;
-	background: url("/img/back.png") no-repeat;
+	background: url("../img/back.png") no-repeat;
 	background-size: 100% 100%;
 	text-align: center;
 	position: relative;
@@ -25,12 +25,12 @@ input.fspCheckBox{
     margin: -3px 5px 0 0 !important;
     cursor: pointer;
     vertical-align: middle;
-    background: url(/img/unchecked.png) no-repeat;
+    background: url(../img/unchecked.png) no-repeat;
     outline: none;
 }
 
 input.fspCheckBox:checked {
-	background: url(/img/checked.png) no-repeat;
+	background: url(../img/checked.png) no-repeat;
 }
 
 input.fspCheckBox:focus{
