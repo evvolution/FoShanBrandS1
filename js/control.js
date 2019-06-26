@@ -9,6 +9,7 @@ $(document).ready(function(){
 	get_S1_list1();
 	get_S1_list2();
 	stateControl();
+	bindShowModals();
 	nochange();
 });
 
@@ -177,4 +178,14 @@ function nochange(){
         this.style.outline = "none";
         this.style.color = "#188ae2";
     };
+}
+
+
+function bindShowModals(){
+	$("#showrules").click(function(){
+		$('#introModal').modal();
+	});
+	$("#reselect").click(function(){
+		$('#reselectmodal').modal();
+	});
 }
