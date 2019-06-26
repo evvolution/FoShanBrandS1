@@ -9,7 +9,7 @@ $(document).ready(function(){
 	get_S1_list1();
 	get_S1_list2();
 	stateControl();
-	bindShowModals();
+	bindBasicBTNs();
 	nochange();
 });
 
@@ -181,11 +181,29 @@ function nochange(){
 }
 
 
-function bindShowModals(){
+function bindBasicBTNs(){
 	$("#showrules").click(function(){
 		$('#introModal').modal();
 	});
+
 	$("#reselect").click(function(){
-		$('#reselectmodal').modal();
+		$('input[name=s1-list1-checkbox]:checked').each(function(){
+			$(this).prop("checked",false);
+			clearChosen();
+
+		});
+		$('input[name=s1-list2-checkbox]:checked').each(function(){
+			$(this).prop("checked",false);
+			clearChosen();
+		});
+
+/*		$('#reselectmodal').modal();*/
 	});
+}
+
+function clearChosen(){
+	$("#s1-list1-state").attr("style", 'width:0%');
+	$("#s1-list2-state").attr("style", 'width:0%');
+	$("#s1-list1-num").html("0/10");
+	$("#s1-list2-num").html("0/10");
 }
