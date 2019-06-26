@@ -59,17 +59,26 @@ function get_S1_list1(){
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
+			var modalcontent = "";
 			for (var i=0; i<data.projects[0].length; i++){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
-				var name = '<span class="list-co">' + data.projects[0][i].title + '</span>';
-				var pic = '<span class="list-pic"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
+				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
+				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
 				var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].item_id + '"/ >';
 				var tail = '</li>';
 
 				listcontent += (head + order + name + pic + checkbox + tail);
+
+				var modalhead = '<div class="modal fade" id="s1Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
+				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><button type="button" class="closemodal btn btn-default" data-dismiss="modal" >关闭</button></div>'
+				var modaltail = '</div></div></div>';
+
+				modalcontent += (modalhead + modalbody + modaltail);
+
 			}
 			$("#s1-list1-list").html(listcontent);
+			$("#s1-list1-details-modal").html(modalcontent);
 		},
 		error: function(){
             console.log('很抱歉，获取数据出错，请稍候再试！');
@@ -87,17 +96,26 @@ function get_S1_list2(){
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
+			var modalcontent = "";
 			for (var i=0; i<data.projects[0].length; i++){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
-				var name = '<span class="list-co">' + data.projects[0][i].title + '</span>';
-				var pic = '<span class="list-pic"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
+				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
+				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
 				var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].item_id + '"/ >';
 				var tail = '</li>';
 
 				listcontent += (head + order + name + pic + checkbox + tail);
+
+				var modalhead = '<div class="modal fade" id="s2Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
+				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><button type="button" class="closemodal btn btn-default" data-dismiss="modal" >关闭</button></div>'
+				var modaltail = '</div></div></div>';
+
+				modalcontent += (modalhead + modalbody + modaltail);
+
 			}
 			$("#s1-list2-list").html(listcontent);
+			$("#s1-list2-details-modal").html(modalcontent);
 		},
 		error: function(){
             console.log('很抱歉，获取数据出错，请稍候再试！');
