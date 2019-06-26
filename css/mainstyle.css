@@ -231,7 +231,7 @@ input.fspCheckBox:focus{
     background-color: #223a5e;
     padding-left: 3px;
     padding-right: 2px;
-    z-index:999;
+    z-index:1000;
 }
 
 #reselect{
