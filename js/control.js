@@ -9,6 +9,7 @@ $(document).ready(function(){
 	get_S1_list1();
 	get_S1_list2();
 	stateControl();
+	voteControl()
 	bindBasicBTNs();
 	nochange();
 });
@@ -135,7 +136,7 @@ function stateControl(name, num, scroll){
 	var uncheckedItems = $('input[name=' + name + ']:not(:checked)');
 	var state = checkedItems.length;
 	if(state === 10){
-		$('#' + num).html('<span style="color:yellow">已达上限</span>');
+		$('#' + num).html('<span style="color:green">上限</span>');
 		$('input[name=' + name + ']:not(:checked)').each(function(){
 			$(this).attr('disabled',true);
 		});
@@ -206,4 +207,48 @@ function clearChosen(){
 	$("#s1-list2-state").attr("style", 'width:0%');
 	$("#s1-list1-num").html("0/10");
 	$("#s1-list2-num").html("0/10");
+}
+
+
+function voteControl(){
+	$("#confirmVote").click(function(){
+		var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
+		var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
+		if((s1l1num < 5) || (s1l2num < 5)){
+			alert("您还未完成投票，每个榜单至少需要选择5项");
+			return;
+		}
+/*		else if(){*/
+		/* 判断用户是否提交了个人信息 */
+			$('#getuserinfomodal').modal();
+/*		}*/
+/*		else if(){*/
+		/* 判断当日投票上限 */
+			/*to do*/
+/*
+		}*/
+
+		getCodePic();
+		$('#votemodal').modal();
+	});
+	$("#getnewcode").click(function(){
+		getCodePic();
+	});
+}
+
+function getCodePic(){
+	$.ajax({
+		type:"get",
+		async:false,
+		url:"http://172.16.17.100:8777/captcha",
+		dataType:"json",
+		success:function(data){
+			var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
+			$("#picExam").attr("src", pic);
+		},
+		error: function(){
+		    console.log('很抱歉，获取数据出错，请稍候再试！');
+		    alert("当前服务器忙，请重试");
+		}
+	})
 }

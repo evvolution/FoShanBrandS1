@@ -292,3 +292,12 @@ input.fspCheckBox:focus{
 	color: #fff;
 	outline: none;
 }
+
+#getnewcode{
+	margin-top: 10px;
+    margin-left: -10px;
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+}
