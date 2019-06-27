@@ -5,6 +5,7 @@
 */
 
 var currentTimes = "";
+var successFlag = "";
 
 $(document).ready(function(){
 	setScrollheight();
@@ -367,7 +368,7 @@ function signIn(){
 		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=' + name + '&phone=' + phone,
 		dataType:"json",
 		success:function(data){
-			return "success signed";
+			successFlag = "success signed";
 		},
 		error: function(){
 		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
@@ -380,7 +381,8 @@ function signIn(){
 
 function UploadInfo(){
 	$("#uploadinfo-in").click(function(){
-		var flsg = signIn();
+		signIn();
+		var flsg = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
 		}else{
@@ -392,7 +394,8 @@ function UploadInfo(){
 
 function UploadInfoAndConfrimVote(){
 	$("#uploadinfo-final").click(function(){
-		var flsg = signIn();
+		signIn();
+		var flsg = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
 			
