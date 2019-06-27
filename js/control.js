@@ -16,6 +16,8 @@ $(document).ready(function(){
 	stateControl();
 	voteControl();
 	bindBasicBTNs();
+	UploadInfo();
+	UploadInfoAndConfrimVote();
 });
 
 
@@ -398,7 +400,7 @@ function UploadInfoAndConfrimVote(){
 		var flsg = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
-			
+			alert()
 			/*唤醒带验证码的提交页面*/
 			getCodePic();
 			$('#votemodal').modal();
