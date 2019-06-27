@@ -4,11 +4,14 @@
 	date : 2019-6-3
 */
 
+var currentTimes = "";
+
 $(document).ready(function(){
 	setScrollheight();
 	get_S1_list1();
 	get_S1_list2();
 	checkSigned();
+	currentTimes = checkTimes();
 	stateControl();
 	voteControl();
 	bindBasicBTNs();
@@ -193,8 +196,7 @@ function clearWastedInfo(item){
 
 function voteControl(){
 	$("#confirmVote").click(function(){
-		var enable = checkTimes();
-		alert(enable);
+		var enable = currentTimes;
 		if(enable === "can vote"){
 			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
 			var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
@@ -262,7 +264,6 @@ function checkTimes(){
 		dataType:"json",
 		success:function(data){
 			var times = data.results.length;
-			alert(times)
 			if(times < 2){
 				return "can vote";
 			}else if((times > 2) || (times === 2)){
