@@ -262,6 +262,7 @@ function checkTimes(){
 		dataType:"json",
 		success:function(data){
 			var times = data.results.length;
+			alert(times)
 			if(times < 2){
 				return 'enable';
 			}else{
