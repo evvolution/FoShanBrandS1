@@ -245,7 +245,7 @@ function getCodePic(){
 		},
 		error: function(){
 		    console.log('很抱歉，获取数据出错，请稍候再试！');
-		    alert("当前服务器忙，请重试");
+		    alert("当前服务器忙，请重试getCodePic");
 		}
 	});
 }
@@ -269,7 +269,7 @@ function checkTimes(){
 		},
 		error: function(){
 		    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
-		    alert("当前服务器忙，请重试");
+		    alert("当前服务器忙，请重试checkTimes");
 		}
 	});
 }
@@ -342,7 +342,7 @@ function checkSigned(){
 		},
 		error: function(){
 		    console.log('很抱歉，获取用户openid出错，请稍候再试！');
-		    alert("当前服务器忙，请重试");
+		    alert("当前服务器忙，请重试checkSigned");
 		}
 	});
 }
@@ -366,7 +366,7 @@ function signIn(){
 		},
 		error: function(){
 		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
-		    alert("当前服务器忙，请重试");
+		    alert("当前服务器忙，请重试signIn");
 		}
 	});
 
@@ -379,7 +379,7 @@ function UploadInfo(){
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
 		}else{
-			alert("信息提交失败，请重试");
+			alert("信息提交失败，请重试UploadInfo");
 			return;
 		}
 	})
@@ -395,7 +395,7 @@ function UploadInfoAndConfrimVote(){
 			getCodePic();
 			$('#votemodal').modal();
 		}else{
-			alert("信息提交失败，请重试");
+			alert("信息提交失败，请重试UploadInfoAndConfrimVote");
 			return;
 		}
 	})
