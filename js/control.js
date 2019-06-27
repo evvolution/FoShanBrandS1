@@ -207,8 +207,8 @@ function voteControl(){
 				alert("您还未完成投票，每个榜单至少需要选择5项");
 				return;
 			}
-			var userSigned = checkSigned();
-			if( (!((s1l1num < 5) || (s1l2num < 5))) && (userSigned != "userSigned")){
+			checkSigned();
+			if( (!((s1l1num < 5) || (s1l2num < 5))) && (successFlag != "userSigned")){
 				/* 判断用户是否提交了个人信息 */
 				alert("您还未完善个人信息");
 
@@ -345,7 +345,7 @@ function checkSigned(){
 				return;
 			}else{
 				/* 当用户完成个人信息填写就不做弹出的操作了 */
-				return 'userSigned';
+				successFlag = 'userSigned';
 			}
 		},
 		error: function(){
@@ -401,7 +401,6 @@ function UploadInfoAndConfrimVote(){
 		var flag = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
-			alert()
 			/*唤醒带验证码的提交页面*/
 			getCodePic();
 			$('#votemodal').modal();
