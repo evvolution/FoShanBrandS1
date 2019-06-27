@@ -10,7 +10,7 @@ $(document).ready(function(){
 	get_S1_list2();
 	checkSigned();
 	stateControl();
-	voteControl()
+	voteControl();
 	bindBasicBTNs();
 	nochange();
 });
@@ -265,9 +265,9 @@ function getParam(paramName) {
     return paramValue == "" && (paramValue = null), paramValue
 }
 
+
 /* 判断是否登记了个人信息，若没有，则弹出框要求用户提交个人信息 */
 function checkSigned(){
-
 	var usropenid = getParam('openid');
 	$.ajax({
 		type:"get",
@@ -275,12 +275,13 @@ function checkSigned(){
 		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=&phone=',
 		dataType:"json",
 		success:function(data){
+			alert(usropenid);
 			var name = data.results['name'];
 			var phone = data.results['phone'];
 			if((name === "") || (phone === "")){
 				$("#getuserinfomodal").modal();
-			}  
-
+				return;
+			}
 		},
 		error: function(){
 		    console.log('很抱歉，获取用户openid出错，请稍候再试！');
