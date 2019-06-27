@@ -257,7 +257,7 @@ function checkTimes(){
 	var currrent = getCurrentDate();
 	$.ajax({
 		type:"get",
-		async:false,
+		async:true,
 		url:'http://172.16.17.100:8777/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
