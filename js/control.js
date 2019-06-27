@@ -220,7 +220,7 @@ function voteControl(){
 			alert("您当日投票次数已达上限，请明天再来");
 			return;
 		}else{
-			alert("当前服务器忙，请重试");
+			alert("当前服务器忙，请重试voteControl");
 			return;
 		}
 
@@ -257,7 +257,7 @@ function checkTimes(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:'http://172.16.17.100:8777/examlog/?exam=8create_gte=' + currrent + '&openid=' + usropenid,
+		url:'http://172.16.17.100:8777/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
 			var times = data.results.length;
