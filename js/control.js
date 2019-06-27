@@ -11,9 +11,7 @@ $(document).ready(function(){
 	get_S1_list1();
 	get_S1_list2();
 	checkSigned();
-	alert('before'+currentTimes)
-	currentTimes = checkTimes();
-	alert('after'+currentTimes)
+	checkTimes();
 	stateControl();
 	voteControl();
 	bindBasicBTNs();
@@ -269,11 +267,11 @@ function checkTimes(){
 		success:function(data){
 			var times = data.results.length;
 			if(times < 2){
-				return "can vote";
+				currentTimes = "can vote";
 			}else if((times > 2) || (times === 2)){
-				return "cannot vote";
+				currentTimes = "cannot vote";
 			}else {
-				return "123";
+				return;
 			}
 		},
 		error: function(){
