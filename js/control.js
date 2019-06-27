@@ -368,7 +368,7 @@ function signIn(){
 		type:"post",
 		async:false,
 		url:'http://172.16.17.100:8777/wxusers/',
-		data:["openid":usropenid,"name":name;"phone":phone],
+		data:{"openid":usropenid,"name":name;"phone":phone},
 		dataType:"json",
 		success:function(data){
 			successFlag = "success signed";
