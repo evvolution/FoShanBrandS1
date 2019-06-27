@@ -8,6 +8,7 @@ $(document).ready(function(){
 	setScrollheight();
 	get_S1_list1();
 	get_S1_list2();
+	checkSigned();
 	stateControl();
 	voteControl()
 	bindBasicBTNs();
@@ -57,7 +58,7 @@ function setScrollheight(){
 function get_S1_list1(){
 	$.ajax({
 		type:"get",
-		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=9&openid=123123",
+		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=9&openid=12345",
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
@@ -94,7 +95,7 @@ function get_S1_list1(){
 function get_S1_list2(){
 	$.ajax({
 		type:"get",
-		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=8&openid=123123",
+		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=8&openid=12345",
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
@@ -220,7 +221,7 @@ function voteControl(){
 		}
 /*		else if(){*/
 		/* 判断用户是否提交了个人信息 */
-			$('#getuserinfomodal').modal();
+/*			$('#getuserinfomodal').modal();*/
 /*		}*/
 /*		else if(){*/
 		/* 判断当日投票上限 */
@@ -250,5 +251,35 @@ function getCodePic(){
 		    console.log('很抱歉，获取数据出错，请稍候再试！');
 		    alert("当前服务器忙，请重试");
 		}
-	})
+	});
+}
+
+
+/* 获取url参数  */
+function getParam(paramName) {
+    paramValue = "", isFound = !1;
+    if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+        arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&"), i = 0;
+        while (i < arrSource.length && !isFound) arrSource[i].indexOf("=") > 0 && arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase() && (paramValue = arrSource[i].split("=")[1], isFound = !0), i++
+    }
+    return paramValue == "" && (paramValue = null), paramValue
+}
+
+/* 判断是否登记了个人信息，若没有，则弹出框要求用户提交个人信息 */
+function checkSigned(){
+
+	var usropenid = getParam('openid');
+	$.ajax({
+		type:"get",
+		async:false,
+		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '5C33a94ecec22e5f5af82113&name=&phone=',
+		dataType:"json",
+		success:function(data){
+			console.log(data.results[name]);
+		},
+		error: function(){
+		    console.log('很抱歉，获取用户openid出错，请稍候再试！');
+		    alert("当前服务器忙，请重试");
+		}
+	});
 }
