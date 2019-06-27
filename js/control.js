@@ -194,6 +194,7 @@ function clearWastedInfo(item){
 function voteControl(){
 	$("#confirmVote").click(function(){
 		var enable = checkTimes();
+		alert(enable);
 		if(enable === "enable"){
 			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
 			var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
