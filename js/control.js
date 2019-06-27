@@ -275,10 +275,7 @@ function checkSigned(){
 		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=&phone=',
 		dataType:"json",
 		success:function(data){
-			alert(usropenid);
-			var name = data.results['name'];
-			var phone = data.results['phone'];
-			if((name === "") || (phone === "")){
+			if(data.count === 0){
 				$("#getuserinfomodal").modal();
 				return;
 			}
