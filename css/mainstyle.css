@@ -271,13 +271,8 @@ input.fspCheckBox:focus{
 	border-top: 0;
 }
 
-.btn-default,.btn-default:active,.btn-default:visited{
-/*	border-radius: 50%;*/
-	color: #fff;
-    background-color: transparent;
-    border-color: transparent;
-    outline: none;
-    font-size: 18px;
+.infobtn{
+	display: inline-block;
 }
 
 .list-group-item:first-child {

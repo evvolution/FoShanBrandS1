@@ -12,7 +12,6 @@ $(document).ready(function(){
 	stateControl();
 	voteControl();
 	bindBasicBTNs();
-	nochange();
 });
 
 
@@ -74,7 +73,7 @@ function get_S1_list1(){
 				listcontent += (head + order + name + pic + checkbox + tail);
 
 				var modalhead = '<div class="modal fade" id="s1Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
-				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><button type="button" class="closemodal btn btn-default" data-dismiss="modal" >关闭</button></div>'
+				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
 				var modaltail = '</div></div></div>';
 
 				modalcontent += (modalhead + modalbody + modaltail);
@@ -111,7 +110,7 @@ function get_S1_list2(){
 				listcontent += (head + order + name + pic + checkbox + tail);
 
 				var modalhead = '<div class="modal fade" id="s2Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
-				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><button type="button" class="closemodal btn btn-default" data-dismiss="modal" >关闭</button></div>'
+				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
 				var modaltail = '</div></div></div>';
 
 				modalcontent += (modalhead + modalbody + modaltail);
@@ -160,29 +159,6 @@ function stateControl(name, num, scroll){
 }
 
 
-function nochange(){
-	var btn1 = document.getElementById("uploadinfo");
-	var btn2 = document.getElementById("cancelinfo");
-	var btn3 = document.getElementById("getinfo");
-    // 触摸
-    btn1.onclick = function() {
-        this.style.backgroundColor = "transparent";
-        this.style.outline = "none";
-        this.style.color = "#188ae2";
-    };
-    btn2.onclick = function() {
-        this.style.backgroundColor = "transparent";
-        this.style.outline = "none";
-        this.style.color = "#fff";
-    };
-    btn3.onclick = function() {
-        this.style.backgroundColor = "transparent";
-        this.style.outline = "none";
-        this.style.color = "#188ae2";
-    };
-}
-
-
 function bindBasicBTNs(){
 	$("#showrules").click(function(){
 		$('#introModal').modal();
@@ -198,8 +174,6 @@ function bindBasicBTNs(){
 			$(this).prop("checked",false);
 			clearChosen();
 		});
-
-/*		$('#reselectmodal').modal();*/
 	});
 }
 
@@ -211,27 +185,49 @@ function clearChosen(){
 }
 
 
+/*  投票和信息登记的取消按钮，取消时清空已经填入的内容 */
+function clearWastedInfo(item){
+	$('#' + item).val("");
+}
+
+
 function voteControl(){
 	$("#confirmVote").click(function(){
-		var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
-		var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
-		if((s1l1num < 5) || (s1l2num < 5)){
-			alert("您还未完成投票，每个榜单至少需要选择5项");
+		var enable = checkTimes();
+		if(enable === "enable"){
+			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
+			var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
+			if((s1l1num < 5) || (s1l2num < 5)){
+				alert("您还未完成投票，每个榜单至少需要选择5项");
+				return;
+			}
+			var userSigned = checkSigned();
+			if( (!((s1l1num < 5) || (s1l2num < 5))) && (userSigned != "userSigned")){
+				/* 判断用户是否提交了个人信息 */
+				alert("您还未完善个人信息");
+
+				/* 此时的用户具有投票权限，并且已经给出了满足投票规则的选择，所以当前的提交按钮需要跳转至获取验证码的模态框*/
+				$("#uploadinfo-in").css('display','none');
+				$("#uploadinfo-final").css('display','noneinline-block');
+
+				$('#getuserinfomodal').modal();
+				return;
+			}else{
+				getCodePic();
+				$('#votemodal').modal();
+			}
+		}else if(enable === "disable"){
+			alert("您当日投票次数已达上限，请明天再来");
+			return;
+		}else{
+			alert("当前服务器忙，请重试");
 			return;
 		}
-/*		else if(){*/
-		/* 判断用户是否提交了个人信息 */
-/*			$('#getuserinfomodal').modal();*/
-/*		}*/
-/*		else if(){*/
-		/* 判断当日投票上限 */
-			/*to do*/
-/*
-		}*/
 
-		getCodePic();
-		$('#votemodal').modal();
 	});
+
+
+	/* 确认提交页面重新获取验证码的圆圈按钮 */
 	$("#getnewcode").click(function(){
 		getCodePic();
 	});
@@ -254,8 +250,34 @@ function getCodePic(){
 	});
 }
 
+/* 判断当前用户是否已经达到当天投票上限 */
+function checkTimes(){
+	var usropenid = getParam('openid');
+	var currrent = getCurrentDate();
+	$.ajax({
+		type:"get",
+		async:false,
+		url:'http://172.16.17.100:8777/examlog/?exam=8create_gte=' + currrent + '&openid=' + usropenid,
+		dataType:"json",
+		success:function(data){
+			var times = data.results.length;
+			if(times < 2){
+				return 'enable';
+			}else{
+				return 'disable';
+			}
+		},
+		error: function(){
+		    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
+		    alert("当前服务器忙，请重试");
+		}
+	});
+}
 
-/* 获取url参数  */
+
+
+
+/* 获取url参数 */
 function getParam(paramName) {
     paramValue = "", isFound = !1;
     if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
@@ -265,6 +287,23 @@ function getParam(paramName) {
     return paramValue == "" && (paramValue = null), paramValue
 }
 
+
+/* 获取当前日期 */
+function getCurrentDate(){
+    var date = new Date();
+    var seperator1 = "-";
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+        month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+    }
+    var currentdate = year + seperator1 + month + seperator1 + strDate;
+    return currentdate;
+}
 
 /* 判断是否登记了个人信息，若没有，则弹出框要求用户提交个人信息 */
 function checkSigned(){
@@ -276,14 +315,29 @@ function checkSigned(){
 		dataType:"json",
 		success:function(data){
 			var flag = data.count;
-			var name = data.count.name;
-			var phone = data.count.phone;
+			var name = data.results.name;
+			var phone = data.results.phone;
+			/*首次登陆的需要登记*/
 			if(flag === 0){
+
+				/*首次登陆用户不会有已经选择的项目，所以跳转至验证码的提交按钮隐藏，只显示过程中的提交按钮*/
+				$("#uploadinfo-in").css('display','inline-block');
+				$("#uploadinfo-final").css('display','none');
+
 				$("#getuserinfomodal").modal();
 				return;
+			/*非首次登陆但是没有登记信息的也需要登记*/
 			}else if((flag > 0) && ((name === "") || (phone === ""))){
+
+				/*此处处理方式同上*/
+				$("#uploadinfo-in").css('display','inline-block');
+				$("#uploadinfo-final").css('display','none');
+				
 				$("#getuserinfomodal").modal();
 				return;
+			}else{
+				/* 当用户完成个人信息填写就不做弹出的操作了 */
+				return 'userSigned';
 			}
 		},
 		error: function(){
@@ -291,4 +345,58 @@ function checkSigned(){
 		    alert("当前服务器忙，请重试");
 		}
 	});
+}
+
+
+function signIn(){
+	var usropenid = getParam('openid');
+	var name = $("#username").val();
+	var phone = $("#userphone").val();
+	if((name === "") || (phone === "")){
+		alert("请填写完整");
+		return;
+	}
+	$.ajax({
+		type:"post",
+		async:false,
+		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=' + name + '&phone=' + phone,
+		dataType:"json",
+		success:function(data){
+			return "success signed";
+		},
+		error: function(){
+		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
+		    alert("当前服务器忙，请重试");
+		}
+	});
+
+}
+
+
+function UploadInfo(){
+	$("#uploadinfo-in").click(function(){
+		var flsg = signIn();
+		if(flag === 'success signed'){
+			$('#getuserinfomodal').modal('hide');
+		}else{
+			alert("信息提交失败，请重试");
+			return;
+		}
+	})
+}
+
+function UploadInfoAndConfrimVote(){
+	$("#uploadinfo-final").click(function(){
+		var flsg = signIn();
+		if(flag === 'success signed'){
+			$('#getuserinfomodal').modal('hide');
+			
+			/*唤醒带验证码的提交页面*/
+			getCodePic();
+			$('#votemodal').modal();
+		}else{
+			alert("信息提交失败，请重试");
+			return;
+		}
+	})
 }
