@@ -385,7 +385,7 @@ function signIn(){
 function UploadInfo(){
 	$("#uploadinfo-in").click(function(){
 		signIn();
-		var flsg = successFlag;
+		var flag = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
 		}else{
@@ -398,7 +398,7 @@ function UploadInfo(){
 function UploadInfoAndConfrimVote(){
 	$("#uploadinfo-final").click(function(){
 		signIn();
-		var flsg = successFlag;
+		var flag = successFlag;
 		if(flag === 'success signed'){
 			$('#getuserinfomodal').modal('hide');
 			alert()
