@@ -195,7 +195,7 @@ function voteControl(){
 	$("#confirmVote").click(function(){
 		var enable = checkTimes();
 		alert(enable);
-		if(enable === "enable"){
+		if(enable === "can vote"){
 			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
 			var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
 			if((s1l1num < 5) || (s1l2num < 5)){
@@ -217,7 +217,7 @@ function voteControl(){
 				getCodePic();
 				$('#votemodal').modal();
 			}
-		}else if(enable === "disable"){
+		}else if(enable === "cannot vote"){
 			alert("您当日投票次数已达上限，请明天再来");
 			return;
 		}else{
@@ -264,9 +264,11 @@ function checkTimes(){
 			var times = data.results.length;
 			alert(times)
 			if(times < 2){
-				return 'enable';
-			}else{
-				return 'disable';
+				return "can vote";
+			}else if((times > 2) || (times === 2)){
+				return "cannot vote";
+			}else {
+				return "123";
 			}
 		},
 		error: function(){
