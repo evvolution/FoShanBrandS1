@@ -272,10 +272,15 @@ function checkSigned(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '5C33a94ecec22e5f5af82113&name=&phone=',
+		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=&phone=',
 		dataType:"json",
 		success:function(data){
-			console.log(data.results[name]);
+			var name = data.results['name'];
+			var phone = data.results['phone'];
+			if((name === "") || (phone === "")){
+				$("#getuserinfomodal").modal();
+			}  
+
 		},
 		error: function(){
 		    console.log('很抱歉，获取用户openid出错，请稍候再试！');
