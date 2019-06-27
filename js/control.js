@@ -11,12 +11,10 @@ $(document).ready(function(){
 	setScrollheight();
 	get_S1_list1();
 	get_S1_list2();
-	checkSigned();
 	checkTimes();
 	stateControl();
 	voteControl();
 	bindBasicBTNs();
-	UploadInfo();
 	UploadInfoAndConfrimVote();
 });
 
@@ -206,18 +204,6 @@ function voteControl(){
 			if((s1l1num < 5) || (s1l2num < 5)){
 				alert("您还未完成投票，每个榜单至少需要选择5项");
 				return;
-			}
-			checkSigned();
-			if( (!((s1l1num < 5) || (s1l2num < 5))) && (successFlag != "userSigned")){
-				/* 判断用户是否提交了个人信息 */
-				alert("您还未完善个人信息");
-
-				/* 此时的用户具有投票权限，并且已经给出了满足投票规则的选择，所以当前的提交按钮需要跳转至获取验证码的模态框*/
-				$("#uploadinfo-in").css('display','none');
-				$("#uploadinfo-final").css('display','noneinline-block');
-
-				$('#getuserinfomodal').modal();
-				return;
 			}else{
 				getCodePic();
 				$('#votemodal').modal();
@@ -248,6 +234,7 @@ function getCodePic(){
 		success:function(data){
 			var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
 			$("#picExam").attr("src", pic);
+			$("#itemcodeID").val(data.captcha.item_id);
 		},
 		error: function(){
 		    console.log('很抱歉，获取数据出错，请稍候再试！');
@@ -329,18 +316,10 @@ function checkSigned(){
 			if(flag === 0){
 
 				/*首次登陆用户不会有已经选择的项目，所以跳转至验证码的提交按钮隐藏，只显示过程中的提交按钮*/
-				$("#uploadinfo-in").css('display','inline-block');
-				$("#uploadinfo-final").css('display','none');
-
 				$("#getuserinfomodal").modal();
 				return;
 			/*非首次登陆但是没有登记信息的也需要登记*/
-			}else if((flag > 0) && ((name === "") || (phone === ""))){
-
-				/*此处处理方式同上*/
-				$("#uploadinfo-in").css('display','inline-block');
-				$("#uploadinfo-final").css('display','none');
-				
+			}else if((flag > 0) && ((name === "") || (phone === ""))){			
 				$("#getuserinfomodal").modal();
 				return;
 			}else{
@@ -382,19 +361,6 @@ function signIn(){
 }
 
 
-function UploadInfo(){
-	$("#uploadinfo-in").click(function(){
-		signIn();
-		var flag = successFlag;
-		if(flag === 'success signed'){
-			$('#getuserinfomodal').modal('hide');
-		}else{
-			alert("信息提交失败，请重试UploadInfo");
-			return;
-		}
-	})
-}
-
 function UploadInfoAndConfrimVote(){
 	$("#uploadinfo-final").click(function(){
 		signIn();
@@ -409,4 +375,31 @@ function UploadInfoAndConfrimVote(){
 			return;
 		}
 	})
+}
+
+function finalVoteControl(){
+
+	var s1l1num = $('input[name=s1-list1-checkbox]:checked');
+	var s1l2num = $('input[name=s1-list2-checkbox]:checked');
+	var 
+	$.ajax({
+		type:"get",
+		async:true,
+		url:'http://172.16.17.100:8777/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
+		dataType:"json",
+		success:function(data){
+			var times = data.results.length;
+			if(times < 2){
+				currentTimes = "can vote";
+			}else if((times > 2) || (times === 2)){
+				currentTimes = "cannot vote";
+			}else {
+				return;
+			}
+		},
+		error: function(){
+		    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
+		    alert("当前服务器忙，请重试checkTimes");
+		}
+	});
 }
