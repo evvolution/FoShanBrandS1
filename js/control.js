@@ -8,14 +8,24 @@ var currentTimes = "";
 var successFlag = "";
 
 $(document).ready(function(){
+	//设置滚动条控件高度
 	setScrollheight();
+	//获取1期榜单一内容
 	get_S1_list1();
+	//获取1期榜单二内容
 	get_S1_list2();
+	//校验当日投票次数
 	checkTimes();
+	//进度条控制
 	stateControl();
+	//投票控制
 	voteControl();
+	//基本按钮控制
 	bindBasicBTNs();
-	UploadInfoAndConfrimVote();
+	//投票控制
+	confrimVoteAndUploadInfo();
+
+	xtest();
 });
 
 
@@ -71,7 +81,7 @@ function get_S1_list1(){
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
 				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
 				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
-				var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].item_id + '"/ >';
+				var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
 				var tail = '</li>';
 
 				listcontent += (head + order + name + pic + checkbox + tail);
@@ -108,7 +118,7 @@ function get_S1_list2(){
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
 				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
 				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '" /></span>';
-				var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].item_id + '"/ >';
+				var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
 				var tail = '</li>';
 
 				listcontent += (head + order + name + pic + checkbox + tail);
@@ -179,6 +189,11 @@ function bindBasicBTNs(){
 			clearChosen();
 		});
 	});
+
+	/* 确认提交页面重新获取验证码的圆圈按钮 */
+	$("#getnewcode").click(function(){
+		getCodePic();
+	});
 }
 
 function clearChosen(){
@@ -193,7 +208,6 @@ function clearChosen(){
 function clearWastedInfo(item){
 	$('#' + item).val("");
 }
-
 
 function voteControl(){
 	$("#confirmVote").click(function(){
@@ -216,12 +230,6 @@ function voteControl(){
 			return;
 		}
 
-	});
-
-
-	/* 确认提交页面重新获取验证码的圆圈按钮 */
-	$("#getnewcode").click(function(){
-		getCodePic();
 	});
 }
 
@@ -268,8 +276,6 @@ function checkTimes(){
 		}
 	});
 }
-
-
 
 
 /* 获取url参数 */
@@ -361,45 +367,58 @@ function signIn(){
 }
 
 
-function UploadInfoAndConfrimVote(){
-	$("#uploadinfo-final").click(function(){
-		signIn();
-		var flag = successFlag;
-		if(flag === 'success signed'){
-			$('#getuserinfomodal').modal('hide');
-			/*唤醒带验证码的提交页面*/
-			getCodePic();
-			$('#votemodal').modal();
-		}else{
-			alert("信息提交失败，请重试UploadInfoAndConfrimVote");
-			return;
-		}
-	})
+function confrimVoteAndUploadInfo(){
+
 }
 
 function finalVoteControl(){
-
-	var s1l1num = $('input[name=s1-list1-checkbox]:checked');
-	var s1l2num = $('input[name=s1-list2-checkbox]:checked');
-	var 
-	$.ajax({
-		type:"get",
-		async:true,
-		url:'http://172.16.17.100:8777/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
-		dataType:"json",
-		success:function(data){
-			var times = data.results.length;
-			if(times < 2){
-				currentTimes = "can vote";
-			}else if((times > 2) || (times === 2)){
-				currentTimes = "cannot vote";
-			}else {
-				return;
-			}
-		},
-		error: function(){
-		    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
-		    alert("当前服务器忙，请重试checkTimes");
+	$("#voteFinalConfrim").click(function(){
+		var usropenid = getParam('openid');
+		var item_id = $("#itemcodeID").val();//正确验证码
+		var code = $("#usersetcode").val();//用户输入
+		if(code == ""){
+			alert("请输入验证码");
+			return;
 		}
+		var s1l1checked = [];
+		var s1l2checked = [];
+		var vote_list = [];
+		$('input[name=s1-list1-checkbox]:checked').each(function(i){
+			s1l1checked[i] = $(this).val();
+		});
+		$('input[name=s1-list2-checkbox]:checked').each(function(i){
+			s1l2checked[i] = $(this).val();
+		});
+		vote_list = s1l1checked.concat(s1l2checked);//用户选择
+
+		$.ajax({
+			type:"get",
+			async:true,
+			url:'http://172.16.17.100:8777/exam/add_vote_pro/?exam=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list,
+			dataType:"json",
+			success:function(data){
+				alert(data.msg)
+			},
+			error: function(){
+			    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
+			    alert("当前服务器忙，请重试checkTimes");
+			}
+		});
+	});
+	
+}
+
+function xtest(){
+	$("#showRanks").click(function(){
+		var s1l1checked = [];
+		var s1l2checked = [];
+		var all = [];
+		$('input[name=s1-list1-checkbox]:checked').each(function(i){
+			s1l1checked[i] = $(this).val();
+		});
+		$('input[name=s1-list2-checkbox]:checked').each(function(i){
+			s1l2checked[i] = $(this).val();
+		});
+		all = s1l1checked.concat(s1l2checked)
 	});
 }

@@ -201,6 +201,7 @@ input.fspCheckBox:focus{
 	background-color: rgba(0,0,0,0.07);
 	margin-bottom: 5px;
 	color: #111;
+	
 	height:80px;
 }
 

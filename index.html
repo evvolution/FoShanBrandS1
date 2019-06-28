@@ -105,38 +105,6 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <div class="modal fade" id="getuserinfomodal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-body" style="padding:0;">
-                    <div class="form-group" style="text-align:center;">
-                        <h4>信息登记</h4>
-                        <br/>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <input type="input" class="info form-control" placeholder="*姓名" id="username"/>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-10 col-xs-offset-1">
-                                <input type="input" class="info form-control" placeholder="*手机号" id="userphone" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="infobtn" data-dismiss="modal" id="cancelinfo" onclick=clearWastedInfo('username,userphone')>取消</div>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="infobtn" id="uploadinfo-final" style="color:#188ae2;">提交</div>
-                </div>
-            </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
     <div class="modal fade" id="votemodal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -165,6 +133,39 @@
                     <div class="infobtn" data-dismiss="modal" id="cancelinfo" onclick=clearWastedInfo('usersetcode')>取消</div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="infobtn" id="voteFinalConfrim" style="color:#188ae2;">确认投票</div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    
+    <div class="modal fade" id="getuserinfomodal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0;">
+                    <div class="form-group" style="text-align:center;">
+                        <h4>信息登记</h4>
+                        <br/>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <input type="input" class="info form-control" placeholder="*姓名" id="username"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-10 col-xs-offset-1">
+                                <input type="input" class="info form-control" placeholder="*手机号" id="userphone" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="infobtn" data-dismiss="modal" id="cancelinfo" onclick=clearWastedInfo('username,userphone')>取消</div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="infobtn" id="uploadinfo-final" style="color:#188ae2;">提交</div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
