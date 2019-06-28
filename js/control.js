@@ -398,7 +398,7 @@ function finalVoteControl(){
 		var url = 'http://172.16.17.100:8777/exam/add_vote_pro/?exam_id=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
 		$.ajax({
 			type:"get",
-			async:true,
+/*			async:true,*/
 			url:url,
 			dataType:"json",
 			success:function(data){
@@ -413,7 +413,7 @@ function finalVoteControl(){
 
 				}else if(data.is_error == true){
 					if(data.msg === "验证码错误"){
-						alert(msg);
+/*						con(msg);*/
 						alert(data.captcha.captcha_img);
 						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
 						alert(pic);
