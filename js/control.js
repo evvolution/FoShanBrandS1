@@ -229,7 +229,7 @@ function voteControl(){
 				$('#votemodal').modal();
 			}
 		}else if(enable === "cannot vote"){
-			alert("您当日投票次数已达上限，请明天再来");
+			alert("当日投票次数已达上限，请明天再来");
 			return;
 		}else{
 			alert("当前服务器忙，请重试voteControl");
@@ -414,7 +414,9 @@ function finalVoteControl(){
 				}else if(data.is_error == true){
 					if(data.msg === "验证码错误"){
 						alert(msg);
+						alert(data.captcha.captcha_img);
 						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
+						alert(pic);
 						alert(1);
 						$("#picExam").attr("src", pic);
 						$("#itemcodeID").val(data.captcha.item_id);
