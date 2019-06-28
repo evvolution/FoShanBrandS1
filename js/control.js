@@ -326,15 +326,18 @@ function checkSigned(){
 			var phone = data.results.phone;
 			/*首次登陆的需要登记*/
 			if(flag === 0){
+				alert(1)
 				/*首次登陆用户不会有已经选择的项目，所以跳转至验证码的提交按钮隐藏，只显示过程中的提交按钮*/
 				$("#getuserinfomodal").modal();
 				return;
 			/*非首次登陆但是没有登记信息的也需要登记*/
-			}else if((flag > 0) && ((name === "") || (phone === ""))){			
+			}else if((flag > 0) && ((name === "") || (phone === ""))){		
+				alert(2)	
 				$("#getuserinfomodal").modal();
 				return;
 			}else{
 				/* 当用户完成个人信息填写就不做弹出的操作了 */
+				alert(3)
 				successFlag = 'userSigned';
 			}
 		},
@@ -412,7 +415,7 @@ function finalVoteControl(){
 					
 
 					//刷新页面
-					window.location.reload();
+/*					window.location.reload();*/
 
 
 				}else if(data.is_error == true){
