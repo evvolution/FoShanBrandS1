@@ -413,7 +413,9 @@ function finalVoteControl(){
 
 				}else if(data.is_error == true){
 					if(data.msg === "验证码错误"){
-/*						con(msg);*/
+/*						alert(msg);*/
+						alert(data);
+						alert(data.captcha);
 						alert(data.captcha.captcha_img);
 						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
 						alert(pic);
