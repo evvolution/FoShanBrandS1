@@ -22,11 +22,10 @@ $(document).ready(function(){
 	voteControl();
 	//基本按钮控制
 	bindBasicBTNs();
-	//投票控制
+	//个人信息提交
 	confrimVoteAndUploadInfo();
-
+	//投票控制
 	finalVoteControl();
-	xtest();
 });
 
 
@@ -326,19 +325,19 @@ function checkSigned(){
 			var phone = data.results.phone;
 			/*首次登陆的需要登记*/
 			if(flag === 0){
-				alert(1)
+				alert("请填写个人信息");
 				/*首次登陆用户不会有已经选择的项目，所以跳转至验证码的提交按钮隐藏，只显示过程中的提交按钮*/
 				$("#getuserinfomodal").modal();
 				return;
 			/*非首次登陆但是没有登记信息的也需要登记*/
 			}else if((flag > 0) && ((name === "") || (phone === ""))){		
-				alert(2)	
+				alert("请填写个人信息");	
 				$("#getuserinfomodal").modal();
 				return;
 			}else{
 				/* 当用户完成个人信息填写就不做弹出的操作了 */
-				alert(3)
 				successFlag = 'userSigned';
+				window.location.reload();
 			}
 		},
 		error: function(){
@@ -346,37 +345,6 @@ function checkSigned(){
 		    alert("当前服务器忙，请重试checkSigned");
 		}
 	});
-}
-
-
-function signIn(){
-	var usropenid = getParam('openid');
-	var name = $("#username").val();
-	var phone = $("#userphone").val();
-	if((name === "") || (phone === "")){
-		alert("请填写完整");
-		return;
-	}
-	$.ajax({
-		type:"post",
-		async:false,
-		url:'http://172.16.17.100:8777/wxusers/',
-		data:{"openid":usropenid,"name":name,"phone":phone},
-/*		dataType:"json",*/
-		success:function(data){
-			successFlag = "success signed";
-		},
-		error: function(){
-		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
-		    alert("当前服务器忙，请重试signIn");
-		}
-	});
-
-}
-
-
-function confrimVoteAndUploadInfo(){
-
 }
 
 function finalVoteControl(){
@@ -412,11 +380,6 @@ function finalVoteControl(){
 					
 					//判断是否已经提交过个人信息
 					checkSigned();
-					
-
-					//刷新页面
-/*					window.location.reload();*/
-
 
 				}else if(data.is_error == true){
 					if(data.msg == "验证码错误"){
@@ -438,17 +401,40 @@ function finalVoteControl(){
 	
 }
 
-function xtest(){
-	$("#showRanks").click(function(){
-		var s1l1checked = [];
-		var s1l2checked = [];
-		var all = [];
-		$('input[name=s1-list1-checkbox]:checked').each(function(i){
-			s1l1checked[i] = $(this).val();
-		});
-		$('input[name=s1-list2-checkbox]:checked').each(function(i){
-			s1l2checked[i] = $(this).val();
-		});
-		all = s1l1checked.concat(s1l2checked)
+
+function giveUpAward(){
+	window.location.reload();
+}
+
+
+/* 个人信息 */
+function confrimVoteAndUploadInfo(){
+	$("#uploadinfo-final").click(function(){
+		signIn();
+	});
+}
+
+function signIn(){
+	var usropenid = getParam('openid');
+	var name = $("#username").val();
+	var phone = $("#userphone").val();
+	if((name === "") || (phone === "")){
+		alert("请填写完整");
+		return;
+	}
+	$.ajax({
+		type:"post",
+		async:false,
+		url:'http://172.16.17.100:8777/wxusers/',
+		data:{"openid":usropenid,"name":name,"phone":phone},
+/*		dataType:"json",*/
+		success:function(data){
+			alert("参与成功！请等待开奖");
+			window.location.reload();
+		},
+		error: function(){
+		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
+		    alert("当前服务器忙，请重试signIn");
+		}
 	});
 }
