@@ -414,9 +414,10 @@ function finalVoteControl(){
 				}else if(data.is_error == true){
 					if(data.msg == "验证码错误"){
 						alert(msg);
+						$("#usersetcode").val("");
 						var pic = 'data:image/png;base64,' + data.data.captcha.captcha_img;
 						$("#picExam").attr("src", pic);
-						$("#itemcodeID").val(data.captcha.item_id);
+						$("#itemcodeID").val(data.data.captcha.item_id);
 					}
 				}
 				
