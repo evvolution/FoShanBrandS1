@@ -407,9 +407,12 @@ function finalVoteControl(){
 					//投票成功提示
 					alert(msg);
 					//刷新页面
+					alert(1)
 					window.location.reload();
 					//判断是否已经提交过个人信息
+					alert(2)
 					checkSigned();
+					alert(successFlag);
 
 				}else if(data.is_error == true){
 					if(data.msg == "验证码错误"){
