@@ -60,10 +60,10 @@ function setScrollheight(){
 	var availHeight = window.screen.availHeight;
 	if(availHeight < 700){
 		$(".list-group").css("height", availHeight*0.48);
-		$("#introcontent").css("height", availHeight*0.5);
+		$("#introcontent").css("height", availHeight*0.52);
 	}else if(availHeight > 700){
 		$(".list-group").css("height", availHeight*0.58);
-		$("#introcontent").css("height", availHeight*0.6);
+		$("#introcontent").css("height", availHeight*0.61);
 	}
 	
 }
@@ -87,7 +87,7 @@ function get_S1_list1(){
 
 				listcontent += (head + order + name + pic + checkbox + tail);
 
-				var modalhead = '<div class="modal fade" id="s1Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
+				var modalhead = '<div data-backdrop="static" class="modal fade" id="s1Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
 				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
 				var modaltail = '</div></div></div>';
 
@@ -124,7 +124,7 @@ function get_S1_list2(){
 
 				listcontent += (head + order + name + pic + checkbox + tail);
 
-				var modalhead = '<div class="modal fade" id="s2Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
+				var modalhead = '<div data-backdrop="static" class="modal fade" id="s2Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
 				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
 				var modaltail = '</div></div></div>';
 
@@ -391,15 +391,20 @@ function finalVoteControl(){
 			s1l2checked[i] = $(this).val();
 		});
 		vote_list = s1l1checked.concat(s1l2checked);//用户选择
-		var url = 'http://172.16.17.100:8777/exam/add_vote_pro/?exam=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
-		alert(url)
+		var url = 'http://172.16.17.100:8777/exam/add_vote_pro/?exam_id=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
 		$.ajax({
 			type:"get",
 			async:true,
 			url:url,
 			dataType:"json",
 			success:function(data){
-				alert(data.msg)
+				if(data.is_error == false){
+					alert(data.msg);
+					window.location.reload();
+				}else if(data.is_error == true){
+
+				}
+				
 			},
 			error: function(){
 			    console.log('很抱歉，获取用户当日参加活动次数出错，请稍候再试！');
