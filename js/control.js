@@ -466,30 +466,30 @@ function getRanks(){
 			var line1 = '';
 			var line2 = '';
 			for(var i=0; i < data[0].votes.length; i++){
-				if(i == 0){
+/*				if(i == 0){
 					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
 				}else if(i == 1){
 					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
 				}else if(i == 2){
 					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}else{
+				}else{*/
 					line1 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}
+/*				}*/
 
 				s1l1rank += line1;
 			}
 			$("#s1l2rank").html(s1l1rank);
 
 			for(var i=0; i < data[1].votes.length; i++){
-				if(i == 0){
+/*				if(i == 0){
 					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
 				}else if(i == 1){
 					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
 				}else if(i == 2){
 					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
-				}else{
+				}else{*/
 					line2 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[1].votes[i].title + '</td>';
-				}
+/*				}*/
 				
 				s1l2rank += line2;
 			}
