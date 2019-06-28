@@ -403,21 +403,19 @@ function finalVoteControl(){
 			dataType:"json",
 			success:function(data){
 				var msg = data.msg;
-				alert(data.is_error);
-				alert(msg);
 				if(data.is_error == false){
 					//投票成功提示
 					alert(msg);
 					//刷新页面
 					window.location.reload();
 					//判断是否已经提交过个人信息
-					alert(1);
 					checkSigned();
 
 				}else if(data.is_error == true){
 					if(data.msg === "验证码错误"){
 						alert(msg);
 						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
+						alert(1);
 						$("#picExam").attr("src", pic);
 						$("#itemcodeID").val(data.captcha.item_id);
 					}
