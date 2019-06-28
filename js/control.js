@@ -7,6 +7,8 @@
 var currentTimes = "";
 var successFlag = "";
 
+var netlink = 'http://fs.foshanplus.com:8082';
+
 $(document).ready(function(){
 	//设置滚动条控件高度
 	setScrollheight();
@@ -79,7 +81,7 @@ function setScrollheight(){
 function get_S1_list1(){
 	$.ajax({
 		type:"get",
-		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=9&openid=12345",
+		url: netlink + "/exam/get_vote/?exam_id=9&openid=12345",
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
@@ -116,7 +118,7 @@ function get_S1_list1(){
 function get_S1_list2(){
 	$.ajax({
 		type:"get",
-		url:"http://172.16.17.100:8777/exam/get_vote/?exam_id=8&openid=12345",
+		url: netlink + "/exam/get_vote/?exam_id=8&openid=12345",
 		dataType:"json",
 		success:function(data){
 			var listcontent = "";
@@ -256,7 +258,7 @@ function getCodePic(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:"http://172.16.17.100:8777/captcha",
+		url: netlink + "/captcha",
 		dataType:"json",
 		success:function(data){
 			var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
@@ -277,7 +279,7 @@ function checkTimes(){
 	$.ajax({
 		type:"get",
 		async:true,
-		url:'http://172.16.17.100:8777/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
+		url: netlink + '/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
 			var times = data.results.length;
@@ -331,7 +333,7 @@ function checkSigned(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:'http://172.16.17.100:8777/wxusers/?openid=' + usropenid + '&name=&phone=',
+		url: netlink + '/wxusers/?openid=' + usropenid + '&name=&phone=',
 		dataType:"json",
 		success:function(data){
 			var flag = data.count;
@@ -380,7 +382,7 @@ function finalVoteControl(){
 			s1l2checked[i] = $(this).val();
 		});
 		vote_list = s1l1checked.concat(s1l2checked);//用户选择
-		var url = 'http://172.16.17.100:8777/exam/add_vote_pro/?exam_id=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
+		var url = netlink + '/exam/add_vote_pro/?exam_id=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
 		$.ajax({
 			type:"get",
 /*			async:true,*/
@@ -439,7 +441,7 @@ function signIn(){
 	$.ajax({
 		type:"post",
 		async:false,
-		url:'http://172.16.17.100:8777/wxusers/',
+		url: netlink + '/wxusers/',
 		data:{"openid":usropenid,"name":name,"phone":phone},
 /*		dataType:"json",*/
 		success:function(data){
@@ -458,7 +460,7 @@ function getRanks(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:'http://172.16.17.100:8777/exam/get_vote_rank/?exam_id=8,9&top=1000',
+		url:netlink + '/exam/get_vote_rank/?exam_id=8,9&top=1000',
 		dataType:"json",
 		success:function(data){
 			var s1l1rank = "";
