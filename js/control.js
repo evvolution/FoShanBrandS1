@@ -406,10 +406,14 @@ function finalVoteControl(){
 				if(data.is_error == false){
 					//投票成功提示
 					alert(msg);
-					//刷新页面
-					window.location.reload();
+					
 					//判断是否已经提交过个人信息
 					checkSigned();
+					
+
+					//刷新页面
+					window.location.reload();
+
 
 				}else if(data.is_error == true){
 					if(data.msg == "验证码错误"){
