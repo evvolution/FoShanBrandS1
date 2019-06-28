@@ -25,6 +25,7 @@ $(document).ready(function(){
 	//投票控制
 	confrimVoteAndUploadInfo();
 
+	finalVoteControl();
 	xtest();
 });
 
