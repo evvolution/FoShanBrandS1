@@ -412,14 +412,9 @@ function finalVoteControl(){
 					checkSigned();
 
 				}else if(data.is_error == true){
-					if(data.msg === "验证码错误"){
-/*						alert(msg);*/
-						alert(data);
-						alert(data.captcha);
-						alert(data.captcha.captcha_img);
-						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
-						alert(pic);
-						alert(1);
+					if(data.msg == "验证码错误"){
+						alert(msg);
+						var pic = 'data:image/png;base64,' + data.data.captcha.captcha_img;
 						$("#picExam").attr("src", pic);
 						$("#itemcodeID").val(data.captcha.item_id);
 					}
