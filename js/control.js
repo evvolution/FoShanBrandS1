@@ -183,11 +183,16 @@ function bindBasicBTNs(){
 		$('input[name=s1-list1-checkbox]:checked').each(function(){
 			$(this).prop("checked",false);
 			clearChosen();
-
+		});
+		$('input[name=s1-list1-checkbox]').each(function(){
+			$(this).attr('disabled',false);
 		});
 		$('input[name=s1-list2-checkbox]:checked').each(function(){
 			$(this).prop("checked",false);
 			clearChosen();
+		});
+		$('input[name=s1-list2-checkbox]').each(function(){
+			$(this).attr('disabled',false);
 		});
 	});
 
