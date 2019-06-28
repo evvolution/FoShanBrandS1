@@ -37,7 +37,7 @@
                 <div class="voteRate">分榜二&nbsp;<span id="s1-list2-num">0/10</span></div>
             </div>
             <div class="col-xs-4">
-                <button class="btn btn-danger" id="showRanks" >
+                <button class="btn btn-danger" id="showRanks" data-toggle="modal" data-target="#ranks">
                     <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
                 </button>
                 <button class="btn btn-success" id="confirmVote">投票</button>
@@ -166,6 +166,59 @@
                     <div class="infobtn" data-dismiss="modal" id="cancelinfo" onclick=giveUpAward()>放弃抽奖</div>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <div class="infobtn" id="uploadinfo-final" style="color:#188ae2;">参与抽奖</div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" id="ranks" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="padding:0;">
+                    <div class="form-group" style="text-align:center;">
+                        <h4 style="color:red">排行榜</h4>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div id="mycarousel" class="carousel slide">
+                                    <!-- Indicators -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#mycarousel" data-slide-to="0" id="rankpoint1" class="active"></li>
+                                        <li data-target="#mycarousel" data-slide-to="1" id="rankpoint2"></li>
+                                    </ol>
+
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active" id="s1l1rank-content">
+                                            <div class="carousel caption" style="text-align:center;color:yellow"><big><strong>佛山市网信技术创新优秀品牌</strong></big></div>
+                                            <table class="table" id="s1l1rank" style="text-align:center;">
+                                            </table>
+                                       </div>
+                                        <div class="item" id="s1l2rank-content">
+                                            <div class="carousel caption" style="text-align:center;color:yellow"><big><strong>佛山市服务贸易和外包领军企业品牌</strong></big></div>
+                                            <table class="table" id="s1l2rank" style="text-align:center;">
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                    <!-- Controls -->
+                                    <a class="left carousel-control" href="#mycarousel" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#mycarousel" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div data-dismiss="modal" style="color:#188ae2;">我知道了</div>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

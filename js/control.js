@@ -26,6 +26,8 @@ $(document).ready(function(){
 	confrimVoteAndUploadInfo();
 	//投票控制
 	finalVoteControl();
+	//获取排行榜
+	getRanks()
 });
 
 
@@ -60,9 +62,15 @@ function setScrollheight(){
 	if(availHeight < 700){
 		$(".list-group").css("height", availHeight*0.48);
 		$("#introcontent").css("height", availHeight*0.52);
+
+		$("#s1l1rank-content").css("height", availHeight*0.58);
+		$("#s1l2rank-content").css("height", availHeight*0.58);
 	}else if(availHeight > 700){
 		$(".list-group").css("height", availHeight*0.58);
 		$("#introcontent").css("height", availHeight*0.61);
+
+		$("#s1l1rank-content").css("height", availHeight*0.7);
+		$("#s1l2rank-content").css("height", availHeight*0.7);
 	}
 	
 }
@@ -198,6 +206,12 @@ function bindBasicBTNs(){
 	/* 确认提交页面重新获取验证码的圆圈按钮 */
 	$("#getnewcode").click(function(){
 		getCodePic();
+	});
+
+	/*禁用轮播图自动播放*/
+	$('#mycarousel').carousel({
+		pause: true,
+		interval: false
 	});
 }
 
@@ -434,6 +448,55 @@ function signIn(){
 		},
 		error: function(){
 		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
+		    alert("当前服务器忙，请重试signIn");
+		}
+	});
+}
+
+
+function getRanks(){
+	$.ajax({
+		type:"get",
+		async:false,
+		url:'http://172.16.17.100:8777/exam/get_vote_rank/?exam_id=8,9&top=1000',
+		dataType:"json",
+		success:function(data){
+			var s1l1rank = "";
+			var s1l2rank = "";
+			var line1 = '';
+			var line2 = '';
+			for(var i=0; i < data[0].votes.length; i++){
+				if(i == 0){
+					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
+				}else if(i == 1){
+					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
+				}else if(i == 2){
+					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
+				}else{
+					line1 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[0].votes[i].title + '</td>';
+				}
+
+				s1l1rank += line1;
+			}
+			$("#s1l2rank").html(s1l1rank);
+
+			for(var i=0; i < data[1].votes.length; i++){
+				if(i == 0){
+					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
+				}else if(i == 1){
+					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
+				}else if(i == 2){
+					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
+				}else{
+					line2 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[1].votes[i].title + '</td>';
+				}
+				
+				s1l2rank += line2;
+			}
+			$("#s1l1rank").html(s1l2rank);
+		},
+		error: function(){
+		    console.log('很抱歉，获取排行榜失败，请稍候再试！');
 		    alert("当前服务器忙，请重试signIn");
 		}
 	});
