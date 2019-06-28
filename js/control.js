@@ -321,7 +321,6 @@ function checkSigned(){
 			var phone = data.results.phone;
 			/*首次登陆的需要登记*/
 			if(flag === 0){
-
 				/*首次登陆用户不会有已经选择的项目，所以跳转至验证码的提交按钮隐藏，只显示过程中的提交按钮*/
 				$("#getuserinfomodal").modal();
 				return;
@@ -398,11 +397,24 @@ function finalVoteControl(){
 			url:url,
 			dataType:"json",
 			success:function(data){
-				if(data.is_error == false){
-					alert(data.msg);
-					window.location.reload();
-				}else if(data.is_error == true){
+				var msg = data.msg;
 
+				if(data.is_error == false){
+					//投票成功提示
+					alert(msg);
+					//刷新页面
+					window.location.reload();
+					//判断是否已经提交过个人信息
+					alert(1);
+					checkSigned();
+
+				}else if(data.is_error == true){
+					if(data.msg === "验证码错误"){
+						alert(msg);
+						var pic = 'data:image/png;base64,' + data.captcha.captcha_img;
+						$("#picExam").attr("src", pic);
+						$("#itemcodeID").val(data.captcha.item_id);
+					}
 				}
 				
 			},
