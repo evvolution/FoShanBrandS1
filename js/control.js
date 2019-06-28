@@ -391,11 +391,12 @@ function finalVoteControl(){
 			s1l2checked[i] = $(this).val();
 		});
 		vote_list = s1l1checked.concat(s1l2checked);//用户选择
-
+		var url = 'http://172.16.17.100:8777/exam/add_vote_pro/?exam=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
+		alert(url)
 		$.ajax({
 			type:"get",
 			async:true,
-			url:'http://172.16.17.100:8777/exam/add_vote_pro/?exam=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list,
+			url:url,
 			dataType:"json",
 			success:function(data){
 				alert(data.msg)
