@@ -398,7 +398,7 @@ function finalVoteControl(){
 			dataType:"json",
 			success:function(data){
 				var msg = data.msg;
-
+				alert(data.is_error)
 				if(data.is_error == false){
 					//投票成功提示
 					alert(msg);
