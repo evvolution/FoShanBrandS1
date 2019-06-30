@@ -276,6 +276,7 @@ function getCodePic(){
 function checkTimes(){
 	var usropenid = getParam('openid');
 	var currrent = getCurrentDate();
+	alert(currrent)
 	$.ajax({
 		type:"get",
 		async:true,
