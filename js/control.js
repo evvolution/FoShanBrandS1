@@ -65,14 +65,14 @@ function setScrollheight(){
 		$(".list-group").css("height", availHeight*0.48);
 		$("#introcontent").css("height", availHeight*0.52);
 
-		$("#s1l1rank-content").css("height", availHeight*0.58);
-		$("#s1l2rank-content").css("height", availHeight*0.58);
+		$("#s1l1rank-content").css("height", availHeight*0.4);
+		$("#s1l2rank-content").css("height", availHeight*0.4);
 	}else if(availHeight > 700){
 		$(".list-group").css("height", availHeight*0.58);
 		$("#introcontent").css("height", availHeight*0.61);
 
-		$("#s1l1rank-content").css("height", availHeight*0.7);
-		$("#s1l2rank-content").css("height", availHeight*0.7);
+		$("#s1l1rank-content").css("height", availHeight*0.4);
+		$("#s1l2rank-content").css("height", availHeight*0.4);
 	}
 	
 }
@@ -460,7 +460,7 @@ function getRanks(){
 	$.ajax({
 		type:"get",
 		async:false,
-		url:netlink + '/exam/get_vote_rank/?exam_id=8,9&top=1000',
+		url:netlink + '/exam/get_vote_rank/?exam_id=8,9&top=10',
 		dataType:"json",
 		success:function(data){
 			var s1l1rank = "";
@@ -468,14 +468,17 @@ function getRanks(){
 			var line1 = '';
 			var line2 = '';
 			for(var i=0; i < data[0].votes.length; i++){
-/*				if(i == 0){
-					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}else if(i == 1){
+/*				if(i == 9){
+					line1 = '<tr><td width="20%"></td><td width="80%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td><br/>';
+				}*/
+/*				else if(i == 1){
 					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
 				}else if(i == 2){
 					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}else{*/
-					line1 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[0].votes[i].title + '</td>';
+				}
+*/
+/*				else{*/
+					line1 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td>';
 /*				}*/
 
 				s1l1rank += line1;
@@ -490,7 +493,7 @@ function getRanks(){
 				}else if(i == 2){
 					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
 				}else{*/
-					line2 = '<tr><td width=10%>' + (i+1) + '</td><td width=80%>' + data[1].votes[i].title + '</td>';
+					line2 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td>';
 /*				}*/
 				
 				s1l2rank += line2;
