@@ -283,7 +283,7 @@ function checkTimes(){
 		url: netlink + '/examlog/?exam=8&created_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
-			var times = data.count;
+			var times = data.results.length;
 			if(times < 2){
 				currentTimes = "can vote";
 			}else if((times > 2) || (times === 2)){
