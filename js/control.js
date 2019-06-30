@@ -276,14 +276,14 @@ function getCodePic(){
 function checkTimes(){
 	var usropenid = getParam('openid');
 	var currrent = getCurrentDate();
-	alert(currrent)
 	$.ajax({
 		type:"get",
 		async:true,
 		url: netlink + '/examlog/?exam=8&create_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
-			var times = data.results.length;
+			var times = data.count;
+			alert(times)
 			if(times < 2){
 				currentTimes = "can vote";
 			}else if((times > 2) || (times === 2)){
