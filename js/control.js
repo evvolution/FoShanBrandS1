@@ -493,7 +493,7 @@ function getRanks(){
 				}else if(i == 2){
 					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
 				}else{*/
-					line2 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td>';
+					line2 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[1].votes[i].title + '</td>';
 /*				}*/
 				
 				s1l2rank += line2;
