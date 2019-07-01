@@ -65,13 +65,13 @@ function setScrollheight(){
 
 	if(availHeight < 700){
 		$(".list-group").css("height", availHeight*0.48);
-		$("#introcontent").css("height", availHeight*0.52);
+		$("#introcontent").css("height", availHeight*0.44);
 
 		$("#s1l1rank-content").css("height", availHeight*0.4);
 		$("#s1l2rank-content").css("height", availHeight*0.4);
 	}else if(availHeight > 700){
 		$(".list-group").css("height", availHeight*0.52);
-		$("#introcontent").css("height", availHeight*0.61);
+		$("#introcontent").css("height", availHeight*0.53);
 
 		$("#s1l1rank-content").css("height", availHeight*0.4);
 		$("#s1l2rank-content").css("height", availHeight*0.4);
