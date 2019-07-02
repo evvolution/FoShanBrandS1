@@ -356,7 +356,7 @@ function checkSigned(){
 			}else{
 				/* 当用户完成个人信息填写就不做弹出的操作了 */
 				successFlag = 'userSigned';
-				window.location.reload();
+				window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
 			}
 		},
 		error: function(){
@@ -422,7 +422,8 @@ function finalVoteControl(){
 
 
 function giveUpAward(){
-	window.location.reload();
+	var usropenid = getParam('openid');
+	window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
 }
 
 
@@ -449,7 +450,7 @@ function signIn(){
 /*		dataType:"json",*/
 		success:function(data){
 			alert("参与成功！请等待开奖");
-			window.location.reload();
+			window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
 		},
 		error: function(){
 		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
