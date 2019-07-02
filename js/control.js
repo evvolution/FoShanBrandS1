@@ -45,8 +45,9 @@ window.onload = function() {
         speed: 500,
         on: {
             slideChangeTransitionStart: function() {
-                $(".tabs .active").removeClass('active');
-                $(".tabs a").eq(this.activeIndex).addClass('active');
+                /*$(".tabs .active").removeClass('active');
+                $(".tabs a").eq(this.activeIndex).addClass('active');*/
+                return;
             }
         }
     })
