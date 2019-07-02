@@ -93,7 +93,7 @@ function get_S1_list1(){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
 				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
-				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/0/format/jpg/interlace/1/q/70" /></span>';
+				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/2/w/100/h/80/format/jpg/interlace/1/q/90" /></span>';
 				var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
 				var tail = '</li>';
 
@@ -130,7 +130,7 @@ function get_S1_list2(){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
 				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
-				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/0/format/jpg/interlace/1/q/70" /></span>';
+				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/2/w/100/h/80/format/jpg/interlace/1/q/90" /></span>';
 				var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
 				var tail = '</li>';
 
