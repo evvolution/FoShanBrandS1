@@ -36,18 +36,18 @@ $(document).ready(function(){
 //页面初始化
 window.onload = function() {
     var navSwiper = new Swiper('#header', {
-        freeMode: false,
+        freeMode: true,
         slidesPerView: 'auto',
-        freeModeSticky: false,
+        freeModeSticky: true,
     });
 
     var tabsSwiper = new Swiper('#tabs-container', {
         speed: 500,
         on: {
             slideChangeTransitionStart: function() {
-                /*$(".tabs .active").removeClass('active');
-                $(".tabs a").eq(this.activeIndex).addClass('active');*/
-                return;
+                $(".tabs .active").removeClass('active');
+                $(".tabs a").eq(this.activeIndex).addClass('active');
+/*                return;*/
             }
         }
     })
@@ -55,7 +55,7 @@ window.onload = function() {
         e.preventDefault()
         $(".tabs .active").removeClass('active')
         $(this).addClass('active')
-/*        tabsSwiper.slideTo($(this).index())*/
+        tabsSwiper.slideTo($(this).index())
     })
 
 }
