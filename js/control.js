@@ -235,6 +235,7 @@ function clearWastedInfo(item){
 
 function voteControl(){
 	$("#confirmVote").click(function(){
+		checkTimes()
 		var enable = currentTimes;
 		if(enable === "can vote"){
 			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
@@ -388,7 +389,7 @@ function finalVoteControl(){
 		var url = netlink + '/exam/add_vote_pro/?exam_id=8,9&openid=' + usropenid + '&item_id=' + item_id + '&code=' + code + '&vote_list=' + vote_list;
 		$.ajax({
 			type:"get",
-/*			async:true,*/
+			async:false,
 			url:url,
 			dataType:"json",
 			success:function(data){
@@ -407,6 +408,9 @@ function finalVoteControl(){
 						var pic = 'data:image/png;base64,' + data.data.captcha.captcha_img;
 						$("#picExam").attr("src", pic);
 						$("#itemcodeID").val(data.data.captcha.item_id);
+					}else{
+						alert(msg);
+						window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
 					}
 				}
 				
