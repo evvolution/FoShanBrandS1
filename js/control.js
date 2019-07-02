@@ -38,7 +38,7 @@ window.onload = function() {
     var navSwiper = new Swiper('#header', {
         freeMode: false,
         slidesPerView: 'auto',
-        freeModeSticky: true,
+        freeModeSticky: false,
     });
 
     var tabsSwiper = new Swiper('#tabs-container', {
@@ -55,7 +55,7 @@ window.onload = function() {
         e.preventDefault()
         $(".tabs .active").removeClass('active')
         $(this).addClass('active')
-        tabsSwiper.slideTo($(this).index())
+/*        tabsSwiper.slideTo($(this).index())*/
     })
 
 }
