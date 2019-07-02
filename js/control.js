@@ -36,7 +36,7 @@ $(document).ready(function(){
 //页面初始化
 window.onload = function() {
     var navSwiper = new Swiper('#header', {
-        freeMode: true,
+        freeMode: false,
         slidesPerView: 'auto',
         freeModeSticky: true,
     });
