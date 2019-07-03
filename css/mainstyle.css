@@ -65,17 +65,6 @@ input.fspCheckBox:focus{
 	margin-bottom: 5px;
 }
 
-#fspPIC-tab-s1-1{
-	background-image: url(/img/s1service.png);
-	background-repeat:no-repeat;
-	width: 120px;
-}
-
-#fspPIC-tab-s1-2{
-	background-image: url(/img/s1tech.png);
-	background-repeat:no-repeat;
-	width: 120px;
-}
 
 /***************tabs************/
 #tabs-container {
