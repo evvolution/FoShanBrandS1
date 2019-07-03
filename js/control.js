@@ -237,6 +237,7 @@ function voteControl(){
 	$("#confirmVote").click(function(){
 		checkTimes()
 		var enable = currentTimes;
+		// console.log(enable)
 		if(enable === "can vote"){
 			var s1l1num = $('input[name=s1-list1-checkbox]:checked').length;
 			var s1l2num = $('input[name=s1-list2-checkbox]:checked').length;
@@ -286,7 +287,9 @@ function checkTimes(){
 		url: netlink + '/examlog/?exam=8&created_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
+			// console.log(data);
 			var times = data.results.length;
+/*			totalcount = data.count;*/
 			if(times < 2){
 				currentTimes = "can vote";
 			}else if((times > 2) || (times === 2)){
@@ -357,7 +360,7 @@ function checkSigned(){
 			}else{
 				/* 当用户完成个人信息填写就不做弹出的操作了 */
 				successFlag = 'userSigned';
-				window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
+				window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?openid=' + usropenid;
 			}
 		},
 		error: function(){
@@ -376,6 +379,7 @@ function finalVoteControl(){
 			alert("请输入验证码");
 			return;
 		}
+
 		var s1l1checked = [];
 		var s1l2checked = [];
 		var vote_list = [];
@@ -394,14 +398,15 @@ function finalVoteControl(){
 			dataType:"json",
 			success:function(data){
 				var msg = data.msg;
+				var res = data.is_error;
+				// console.log(res)
 				if(data.is_error == false){
 					//投票成功提示
 					alert(msg);
-					
 					//判断是否已经提交过个人信息
 					checkSigned();
-
 				}else if(data.is_error == true){
+
 					if(data.msg == "验证码错误"){
 						alert(msg);
 						$("#usersetcode").val("");
@@ -410,7 +415,7 @@ function finalVoteControl(){
 						$("#itemcodeID").val(data.data.captcha.item_id);
 					}else{
 						alert(msg);
-						window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
+						window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?openid=' + usropenid;
 					}
 				}
 				
@@ -427,7 +432,7 @@ function finalVoteControl(){
 
 function giveUpAward(){
 	var usropenid = getParam('openid');
-	window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
+	window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?openid=' + usropenid;
 }
 
 
@@ -454,7 +459,7 @@ function signIn(){
 /*		dataType:"json",*/
 		success:function(data){
 			alert("参与成功！请等待开奖");
-			window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?' + usropenid;
+			window.location.href = 'http://fs.foshanplus.com:8082/static/FoShanBrandS1/index.html?openid=' + usropenid;
 		},
 		error: function(){
 		    console.log('很抱歉，提交用户信息错误，请稍候再试！');
