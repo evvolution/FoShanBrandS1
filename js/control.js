@@ -1,7 +1,7 @@
 /*
 	note : 19年品牌佛山活动
 	author : zx
-	date : 2019-6-3
+	date : 2019-6-30
 */
 
 var currentTimes = "";
@@ -287,9 +287,7 @@ function checkTimes(){
 		url: netlink + '/examlog/?exam=8&created_gte=' + currrent + '&openid=' + usropenid,
 		dataType:"json",
 		success:function(data){
-			// console.log(data);
 			var times = data.results.length;
-/*			totalcount = data.count;*/
 			if(times < 2){
 				currentTimes = "can vote";
 			}else if((times > 2) || (times === 2)){
@@ -481,34 +479,13 @@ function getRanks(){
 			var line1 = '';
 			var line2 = '';
 			for(var i=0; i < data[0].votes.length; i++){
-/*				if(i == 9){
-					line1 = '<tr><td width="20%"></td><td width="80%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td><br/>';
-				}*/
-/*				else if(i == 1){
-					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}else if(i == 2){
-					line1 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[0].votes[i].title + '</td>';
-				}
-*/
-/*				else{*/
-					line1 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td>';
-/*				}*/
-
+				line1 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[0].votes[i].title + '</td>';
 				s1l1rank += line1;
 			}
 			$("#s1l2rank").html(s1l1rank);
 
 			for(var i=0; i < data[1].votes.length; i++){
-/*				if(i == 0){
-					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/1.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
-				}else if(i == 1){
-					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/2.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
-				}else if(i == 2){
-					line2 = '<tr><td width=10% class="fspPIC-x-c"><img src="../img/3.png" class="fspPIC-x"/></td><td width=80%>' + data[1].votes[i].title + '</td>';
-				}else{*/
-					line2 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[1].votes[i].title + '</td>';
-/*				}*/
-				
+				line2 = '<tr><td width="10%"></td><td width="90%">' + (i+1) + '&nbsp;&nbsp;' + data[1].votes[i].title + '</td>';
 				s1l2rank += line2;
 			}
 			$("#s1l1rank").html(s1l2rank);
