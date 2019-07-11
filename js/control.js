@@ -62,20 +62,15 @@ window.onload = function() {
 
 function setScrollheight(){
 	var availHeight = window.screen.availHeight;
-	var availwidth = window.screen.availwidth;
+	var availwidth = window.screen.availWidth;
+	$(".list-group").css("height", availHeight*0.6);
+	$("#s1l1rank-content").css("height", availHeight*0.4);
+	$("#s1l2rank-content").css("height", availHeight*0.4);
 
 	if(availHeight < 700){
-		$(".list-group").css("height", availHeight*0.48);
 		$("#introcontent").css("height", availHeight*0.44);
-
-		$("#s1l1rank-content").css("height", availHeight*0.4);
-		$("#s1l2rank-content").css("height", availHeight*0.4);
 	}else if(availHeight > 700){
-		$(".list-group").css("height", availHeight*0.52);
 		$("#introcontent").css("height", availHeight*0.53);
-
-		$("#s1l1rank-content").css("height", availHeight*0.4);
-		$("#s1l2rank-content").css("height", availHeight*0.4);
 	}
 	
 }
@@ -92,12 +87,12 @@ function get_S1_list1(){
 			for (var i=0; i<data.projects[0].length; i++){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
-				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
+				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（最终票数：' + data.projects[0][i].vote_count + '）</span></div>';
 				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s1Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/2/w/100/h/80/format/jpg/interlace/1/q/90" /></span>';
-				var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
+				/*var checkbox = '<input onclick=stateControl("s1-list1-checkbox","s1-list1-num","s1-list1-state") type="checkbox" name="s1-list1-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';*/
 				var tail = '</li>';
 
-				listcontent += (head + order + name + pic + checkbox + tail);
+				listcontent += (head + order + name + pic + tail);
 
 				var modalhead = '<div data-backdrop="static" class="modal fade" id="s1Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
 				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent" style="text-align:justify;">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
@@ -129,18 +124,17 @@ function get_S1_list2(){
 			for (var i=0; i<data.projects[0].length; i++){
 				var head = '<li class="list-group-item">';
 				var order = '<span class="list-order"><strong>' + (i+1) + '</strong></span>';
-				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（当前票数：' + data.projects[0][i].vote_count + '）</span></div>';
+				var name = '<div class="list-mixcontent" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><span class="list-co">' + data.projects[0][i].title + '</span><span class="list-current">（最终票数：' + data.projects[0][i].vote_count + '）</span></div>';
 				var pic = '<span class="list-pic" data-toggle="modal" data-target="#s2Info' + data.projects[0][i].id + '"><img class="list-pic-in" src="' + data.projects[0][i].pic_url + '?imageView2/2/w/100/h/80/format/jpg/interlace/1/q/90" /></span>';
-				var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';
+				/*var checkbox = '<input onclick=stateControl("s1-list2-checkbox","s1-list2-num","s1-list2-state") type="checkbox" name="s1-list2-checkbox" class="fspCheckBox" value="' + data.projects[0][i].id + '"/ >';*/
 				var tail = '</li>';
 
-				listcontent += (head + order + name + pic + checkbox + tail);
+				listcontent += (head + order + name + pic + tail);
 
 				var modalhead = '<div data-backdrop="static" class="modal fade" id="s2Info' + data.projects[0][i].id + '" tabindex="-1" role="dialog"><div class="modal-dialog" role="document"><div class="modal-content">';
 				var modalbody = '<div class="modal-body" style="padding:0;"><div class="form-group" style="text-align:center;"><h4 style="color:#ffe200;">品牌介绍</h4><br/></div><div class="form-group"><div class="s1-details-modalcontent" style="text-align:justify;">' + data.projects[0][i].content + '</div></div></div><div class="modal-footer"><div style="color:#188ae2;" data-dismiss="modal">关闭</div></div>'
 				var modaltail = '</div></div></div>';
-
-				modalcontent += (modalhead + modalbody + modaltail);
+ 
 
 			}
 			$("#s1-list2-list").html(listcontent);

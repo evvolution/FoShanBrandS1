@@ -147,14 +147,13 @@ input.fspCheckBox:focus{
 
 /* 投票列表项  */
 .list-order{
-	top: 25px;
 	float: left;
 	color: #111;
     position: relative;
 }
 
 .list-co{
-	width: 150px;
+	width: 180px;
     float: left;
     word-break: normal;
     text-align: left;
@@ -176,8 +175,8 @@ input.fspCheckBox:focus{
 	width: 50px;
 	height: 40px;
 	display: inline-block;
-	position: relative;
-    margin-top: 10px;
+    position: absolute;
+    right: 20px;
 }
 
 .list-pic-in{
@@ -190,8 +189,9 @@ input.fspCheckBox:focus{
 	background-color: rgba(0,0,0,0.07);
 	margin-bottom: 5px;
 	color: #111;
-	
-	height:80px;
+	height:75px;
+	display: flex;
+    align-items: center;
 }
 
 .list-group{
@@ -214,7 +214,7 @@ input.fspCheckBox:focus{
 }
 
 
-.floatplugin{
+/*.floatplugin{
     position: absolute;
     float: left;
     top: 35px;
@@ -224,7 +224,7 @@ input.fspCheckBox:focus{
     padding-left: 5px;
     padding-right: 2px;
     z-index:1000;
-}
+}*/
 
 #reselect{
 	top: 300px;
@@ -309,4 +309,40 @@ input.fspCheckBox:focus{
 
 .carousel-indicators {
     bottom: -30px;
+}
+
+
+
+#showRanks{
+	position: absolute;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    font-size: 16px;
+    padding: 9px;
+    outline: none;
+    border: 0px;
+    color: #ededed;
+    z-index:1000;
+    float: right;
+    right: 15px;
+    top: 68px;
+    background-color: #188ae2;
+}
+
+#showrules{
+	position: absolute;
+    border-radius: 50%;
+    height: 36px;
+    width: 36px;
+    font-size: 16px;
+    padding: 9px;
+    outline: none;
+    border: 0px;
+    color: #ededed;
+    z-index:1000;
+    float: right;
+    right: 15px;
+    top: 20px;
+    background-color: #de5312;
 }
