@@ -61,6 +61,8 @@ window.onload = function() {
 }
 
 function setScrollheight(){
+	alert('活动已经结束')
+
 	var availHeight = window.screen.availHeight;
 	var availwidth = window.screen.availWidth;
 	$(".list-group").css("height", availHeight*0.6);
